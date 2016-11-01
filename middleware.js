@@ -29,8 +29,11 @@ module.exports = function(compiler, options) {
 	}
 
 	// store our files in memory
-	var files = {};
-	var fs = new MemoryFileSystem();
+  var hasMemoryFs = compiler.compilers && compiler.compilers[0].outputFileSystem instanceof MemoryFileSystem;
+  var fs;
+
+  if(hasMemoryFs) fs = compiler.compilers[0].outputFileSystem;
+  else fs = new MemoryFileSystem();
 
 	// the base output path for web and webworker bundles
 	var outputPath;

@@ -30,7 +30,7 @@ module.exports = function(compiler, options) {
   }
 
   // store our files in memory
-  var hasMemoryFs = compiler.compilers && compiler.compilers[0].outputFileSystem instanceof MemoryFileSystem;
+  var hasMemoryFs = compiler.compilers && compiler.compilers[0].outputFileSystem.constructor.name === 'MemoryFileSystem';
   var fs;
 
   if(hasMemoryFs) fs = compiler.compilers[0].outputFileSystem;

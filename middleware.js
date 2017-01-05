@@ -30,11 +30,8 @@ module.exports = function(compiler, options) {
   }
 
   // store our files in memory
-  var hasMemoryFs = compiler.compilers && compiler.compilers[0].outputFileSystem.constructor.name === 'MemoryFileSystem';
   var fs;
-
-  if(hasMemoryFs) fs = compiler.compilers[0].outputFileSystem;
-  else fs = new MemoryFileSystem();
+  fs = new compiler.compilers[0].outputFileSystem
 
   // the base output path for web and webworker bundles
   var outputPath;
